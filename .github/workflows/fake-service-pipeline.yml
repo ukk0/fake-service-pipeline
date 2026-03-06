@@ -12,6 +12,7 @@ jobs:
         run: echo "Fake deploying service..."
 
   smoke:
+    needs: deploy
     name: "Stage: Test | Smoke"
     uses: ukk0/actions-test-pipeline/.github/workflows/external-pytest-job.yml@main
     with:
