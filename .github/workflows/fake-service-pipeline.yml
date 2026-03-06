@@ -1,0 +1,32 @@
+name: Fake Service Pipeline
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Stage: Deploy"
+        run: echo "Fake deploying service..."
+
+  smoke:
+    name: "Stage: Test | Smoke"
+    uses: ukk0/actions-test-pipeline/.github/workflows/external-pytest-job.yml@main
+    with:
+      test-type: smoke
+
+  integration:
+    needs: smoke
+    name: "Stage: Test | Integration"
+    uses: ukk0/actions-test-pipeline/.github/workflows/external-pytest-job.yml@main
+    with:
+      test-type: integration
+
+  e2e:
+    needs: integration
+    name: "Stage: Test | E2E"
+    uses: ukk0/actions-test-pipeline/.github/workflows/external-pytest-job.yml@main
+    with:
+      test-type: e2e
