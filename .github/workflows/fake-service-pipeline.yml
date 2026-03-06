@@ -8,26 +8,26 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: "Stage: Deploy"
+      - name: "Deploy"
         run: echo "Fake deploying service..."
 
   smoke:
     needs: deploy
-    name: "Stage: Test | Smoke"
+    name: "Test | Smoke"
     uses: ukk0/actions-test-pipeline/.github/workflows/external-pytest-job.yml@main
     with:
       test-type: smoke
 
   integration:
     needs: smoke
-    name: "Stage: Test | Integration"
+    name: "Test | Integration"
     uses: ukk0/actions-test-pipeline/.github/workflows/external-pytest-job.yml@main
     with:
       test-type: integration
 
   e2e:
     needs: integration
-    name: "Stage: Test | E2E"
+    name: "Test | E2E"
     uses: ukk0/actions-test-pipeline/.github/workflows/external-pytest-job.yml@main
     with:
       test-type: e2e
