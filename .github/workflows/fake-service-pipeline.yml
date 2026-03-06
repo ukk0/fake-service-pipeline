@@ -14,20 +14,20 @@ jobs:
   smoke:
     needs: deploy
     name: "Test | Smoke"
-    uses: ukk0/actions-test-pipeline/.github/workflows/external-pytest-job.yml@main
+    uses: ukk0/fake-ta-pipeline/.github/workflows/external-pytest-job.yml@main
     with:
       test-type: smoke
 
   integration:
     needs: smoke
     name: "Test | Integration"
-    uses: ukk0/actions-test-pipeline/.github/workflows/external-pytest-job.yml@main
+    uses: ukk0/fake-ta-pipeline/.github/workflows/external-pytest-job.yml@main
     with:
       test-type: integration
 
   e2e:
     needs: integration
     name: "Test | E2E"
-    uses: ukk0/actions-test-pipeline/.github/workflows/external-pytest-job.yml@main
+    uses: ukk0/fake-ta-pipeline/.github/workflows/external-pytest-job.yml@main
     with:
       test-type: e2e
