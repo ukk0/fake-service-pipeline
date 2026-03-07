@@ -1,4 +1,4 @@
-name: Fake Service Pipeline
+name: Service Pipeline
 
 on:
   workflow_dispatch:
@@ -8,8 +8,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: "Deploy"
-        run: echo "Fake deploying service..."
+      - name: "Deploy to staging"
+        run: echo "Deploying the service..."
 
   smoke:
     needs: deploy
